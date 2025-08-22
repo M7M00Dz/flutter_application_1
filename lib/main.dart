@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/CategoryNewsScreen.dart';
 
 void main() {
   runApp(NewsApp());
@@ -43,27 +44,32 @@ class NewsApp extends StatelessWidget {
                       crossAxisSpacing: 15,
                       childAspectRatio: 0.75,
                     ),
-                    itemBuilder: (context, index) => Column(
-                      children: [
-                        Container(
-                          height: 85,
-                          width: 85,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                              image: AssetImage("assets/image.png"),
-                              fit: BoxFit.cover,
+                    itemBuilder: (context, index) => 
+                    GestureDetector(onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryNewsScreen(category: categories[index],)));
+                    },
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 85,
+                            width: 85,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              image: DecorationImage(
+                                image: AssetImage("assets/image.png"),
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                         Text(
-                          categories[index],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                           Text(
+                            categories[index],
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
 
                     itemCount: 8,
