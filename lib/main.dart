@@ -2,10 +2,19 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(NewsApp());
-}
+} 
+
+
+
+
 
 class NewsApp extends StatelessWidget {
-  const NewsApp({Key? key}) : super(key: key);
+   NewsApp({Key? key}) : super(key: key);
+
+  final List<String> categories = [
+  "Sports", "Politics", "Business", "Tech",
+  "Health", "Travel", "Science", "funny",
+];
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +56,8 @@ class NewsApp extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Text(
-                          "Title",
+                         Text(
+                          categories[index],
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -63,57 +72,61 @@ class NewsApp extends StatelessWidget {
                   ),
                 ),
               ),
+
               Divider(thickness: 1),
 
-              Expanded(
-                child: ListView.separated(
-                    separatorBuilder: (context, index) => Divider(thickness: 1.2),
-                  itemBuilder: (context, index) => SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "newss title",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 25,
-                              ),
-                            ),
-                            Text(
-                              "newss description",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 25,
-                                color: Colors.grey.shade800,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          
-                          height: 140,
-                          width: 140,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            image: DecorationImage(
-                              image: AssetImage("assets/image.png"),
-                              fit: BoxFit.cover,
-                            ),
+             Expanded(
+            child: ListView.separated(
+              separatorBuilder: (context, index) => Divider(thickness: 1.2),
+              itemCount: 10,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+          
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "News Title ",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 20,
+                            ),             
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 5),
+                          Text(
+                            "This is a short description for news item number $index. It looks better wrapped.",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Colors.grey.shade800,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
 
-                  itemCount: 10,
-                  shrinkWrap: true,
-                ),
-              ),
+          
+                       ClipRRect(
+                         borderRadius: BorderRadius.circular(17),
+                         child: Image.asset(
+                           "assets/image.png",
+                           height: 120,
+                           width: 120,
+                           fit: BoxFit.cover,
+                         ),
+                       ),
+                     ],
+                   ),
+                 ),
+               ),
+             )
             ],
           ),
         ),
