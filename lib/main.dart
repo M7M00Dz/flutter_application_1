@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/CategoryNewsScreen.dart';
+import 'package:flutter_application_1/Custom_GridView.dart';
 
 void main() {
   runApp(NewsApp());
@@ -12,10 +13,7 @@ void main() {
 class NewsApp extends StatelessWidget {
    NewsApp({Key? key}) : super(key: key);
 
-  final List<String> categories = [
-  "Sports", "Politics", "Business", "Tech",
-  "Health", "Travel", "Science", "funny",
-];
+
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +31,7 @@ class NewsApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                child: SizedBox(
-                  height: 240,
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 5,
-                      crossAxisSpacing: 15,
-                      childAspectRatio: 0.75,
-                    ),
-                    itemBuilder: (context, index) => 
-                    GestureDetector(onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryNewsScreen(category: categories[index],)));
-                    },
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 85,
-                            width: 85,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                image: AssetImage("assets/image.png"),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                           Text(
-                            categories[index],
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    itemCount: 8,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                  ),
-                ),
-              ),
+              Custom_GridView(),
 
               Divider(thickness: 1),
 
