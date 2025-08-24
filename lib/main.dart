@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Custom_GridView.dart';
+import 'package:flutter_application_1/models/c_models.dart';
 import 'package:flutter_application_1/models/news_model.dart';
 import 'package:flutter_application_1/services/news_services.dart';
 
@@ -25,8 +26,10 @@ void initState() {
   }
 
 List<NewsModel> generalNew = [];
+List<c_models> sportList = [];
 Future<void> getData() async {
   generalNew = await NewsServices().getGereralNews();
+  sportList = await NewsServices().getSportNews();
   setState(() {});
 }
 

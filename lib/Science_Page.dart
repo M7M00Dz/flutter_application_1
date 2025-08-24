@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/models/c_models.dart';
 import 'package:flutter_application_1/services/news_services.dart';
-class CategoryNewsScreen extends StatefulWidget {
+class Science_Page extends StatefulWidget {
   final String category;
 
-   CategoryNewsScreen({Key? key, required this.category}) : super(key: key);
+   Science_Page({Key? key, required this.category}) : super(key: key);
 
   @override
-  State<CategoryNewsScreen> createState() => _CategoryNewsScreenState();
+  State<Science_Page> createState() => _Science_PageState();
 }
 
-class _CategoryNewsScreenState extends State<CategoryNewsScreen> {
+class _Science_PageState extends State<Science_Page> {
   @override
 
 void initState() {
@@ -18,10 +18,10 @@ void initState() {
     super.initState();
   }
 
-List<c_models> sportList = [];
+List<c_models> ScienceList = [];
 Future<void> getData() async {
   
-  sportList = await NewsServices().getSportNews();
+  ScienceList = await NewsServices().getscienceNews();
   setState(() {});
 }
 
@@ -34,7 +34,8 @@ Future<void> getData() async {
       body:Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(thickness: 1.2),
-              itemCount: sportList.length,
+              itemCount: ScienceList.length,
+          
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -47,7 +48,8 @@ Future<void> getData() async {
 
 
                           Text(
-                            sportList[index].title??"title not found",
+                            ScienceList[index].title??"title not found",
+                        
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
@@ -61,7 +63,8 @@ Future<void> getData() async {
 
 
                           Text(
-                            sportList[index].subtitle??"description not found",
+                            ScienceList[index].subtitle??"description not found",
+                       
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -76,7 +79,8 @@ Future<void> getData() async {
 
 
                           Text(
-                            sportList[index].url??"url not found",
+                            ScienceList[index].url??"url not found",
+                        
                             style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 16,

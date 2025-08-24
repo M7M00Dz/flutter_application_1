@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/CategoryNewsScreen.dart';
+import 'package:flutter_application_1/Science_Page.dart';
 
 class Custom_GridView extends StatelessWidget {
   Custom_GridView({super.key});
+
+  final List<Widget> pages = [
+  CategoryNewsScreen(category: "sports",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+  Science_Page(category: "science",),
+];
+
 
   final List<String> categories = [
     "Sports",
@@ -43,8 +56,7 @@ class Custom_GridView extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      CategoryNewsScreen(category: categories[index]),
+                  builder: (context) => pages[index],
                 ),
               );
             },
@@ -69,7 +81,7 @@ class Custom_GridView extends StatelessWidget {
             ),
           ),
 
-          itemCount: 8,
+          itemCount: categories.length,
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
         ),
