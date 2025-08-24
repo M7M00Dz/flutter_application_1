@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/CategoryNewsScreen.dart';
 import 'package:flutter_application_1/Custom_GridView.dart';
 
 void main() {
