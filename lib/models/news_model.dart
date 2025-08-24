@@ -1,8 +1,8 @@
-class NewsModel {
+class GeneralNewsModel {
   String? title;
   String? description;
   String? image;
 
-  NewsModel({this.title, this.description, this.image});
+  GeneralNewsModel({this.title, this.description, this.image});
 
 }
