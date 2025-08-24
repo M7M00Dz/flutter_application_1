@@ -24,9 +24,9 @@ void initState() {
     super.initState();
   }
 
-List<GeneralNewsModel> generalNews = [];
+List<NewsModel> generalNew = [];
 Future<void> getData() async {
-  generalNews = await NewsServices().getGereralNews();
+  generalNew = await NewsServices().getGereralNews();
   setState(() {});
 }
 
@@ -54,10 +54,30 @@ Future<void> getData() async {
 
               Divider(thickness: 1),
 
+              Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text(
+                      "General News",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+
+              Divider(thickness: 1),
+
+              
              Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(thickness: 1.2),
-              itemCount: generalNews.length,
+              itemCount: generalNew.length,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -68,7 +88,7 @@ Future<void> getData() async {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            generalNews[index].title??"No Title Found ", 
+                            generalNew[index].title??"No Title Found ", 
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
@@ -78,7 +98,7 @@ Future<void> getData() async {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            generalNews[index].description??"No description found",
+                            generalNew[index].description??"No description found",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -95,7 +115,7 @@ Future<void> getData() async {
                        ClipRRect(
                          borderRadius: BorderRadius.circular(17),
                          child: Image.network(
-                           generalNews[index].image??"https://cdn3.iconfinder.com/data/icons/file-and-folder-outline-icons-set/144/Image_Error-1024.png",
+                           generalNew[index].image??"https://cdn3.iconfinder.com/data/icons/file-and-folder-outline-icons-set/144/Image_Error-1024.png",
                            height: 120,
                            width: 120,
                            fit: BoxFit.cover,
