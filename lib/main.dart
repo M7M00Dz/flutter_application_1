@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Custom_GridView.dart';
+import 'package:flutter_application_1/models/news_model.dart';
+import 'package:flutter_application_1/services/news_services.dart';
 
 void main() {
   runApp(NewsApp());
@@ -7,14 +9,30 @@ void main() {
 
 
 
-
-
-class NewsApp extends StatelessWidget {
+class NewsApp extends StatefulWidget {
    NewsApp({Key? key}) : super(key: key);
 
-
-
   @override
+  State<NewsApp> createState() => _NewsAppState();
+}
+
+class _NewsAppState extends State<NewsApp> {
+  @override
+
+void initState() {
+    getData();
+    super.initState();
+  }
+
+List<GeneralNewsModel> generalNews = [];
+Future<void> getData() async {
+  generalNews = await NewsServices().getGereralNews();
+  setState(() {});
+}
+
+
+
+
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News App',
@@ -30,6 +48,8 @@ class NewsApp extends StatelessWidget {
         body: SafeArea(
           child: Column(
             children: [
+
+
               Custom_GridView(),
 
               Divider(thickness: 1),
@@ -37,7 +57,7 @@ class NewsApp extends StatelessWidget {
              Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(thickness: 1.2),
-              itemCount: 10,
+              itemCount: generalNews.length,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
@@ -48,7 +68,7 @@ class NewsApp extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "News Title ",
+                            generalNews[index].title??"No Title Found ", 
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 20,
@@ -58,7 +78,7 @@ class NewsApp extends StatelessWidget {
                           ),
                           SizedBox(height: 5),
                           Text(
-                            "This is a short description for news item number $index. It looks better wrapped.",
+                            generalNews[index].description??"No description found",
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
@@ -74,8 +94,8 @@ class NewsApp extends StatelessWidget {
           
                        ClipRRect(
                          borderRadius: BorderRadius.circular(17),
-                         child: Image.asset(
-                           "assets/image.png",
+                         child: Image.network(
+                           generalNews[index].image??"https://cdn3.iconfinder.com/data/icons/file-and-folder-outline-icons-set/144/Image_Error-1024.png",
                            height: 120,
                            width: 120,
                            fit: BoxFit.cover,
