@@ -47,9 +47,9 @@ class Custom_GridView extends StatelessWidget {
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            mainAxisSpacing: 5,
+            mainAxisSpacing: 15,
             crossAxisSpacing: 15,
-            childAspectRatio: 0.75,
+            childAspectRatio: 0.7,
           ),
           itemBuilder: (context, index) => GestureDetector(
             onTap: () {
@@ -75,7 +75,7 @@ class Custom_GridView extends StatelessWidget {
                 ),
                 Text(
                   categories[index],
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
               ],
             ),
